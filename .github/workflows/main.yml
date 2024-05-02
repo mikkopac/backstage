@@ -19,7 +19,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Decode the pfx
+    - name: Run Test Command
       run: |
         echo "Hello Devops"
 
