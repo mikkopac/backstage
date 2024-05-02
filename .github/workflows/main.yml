@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+  workflow_dispatch:
+    #it's required to run manually on default branch
+  workflow_call:
+
 jobs:
 
   build:
