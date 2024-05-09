@@ -25,6 +25,6 @@ jobs:
 
     - name: Run Test Command
       run: |
-        echo "Hello Devops"
+        echo "Hello Devops1"
 
 
