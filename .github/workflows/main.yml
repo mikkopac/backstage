@@ -14,7 +14,9 @@ on:
 
 jobs:
   build:
-    if: "!contains(github.event.commits[0].message, 'Merge branch main into')"  # Prevent running if the push is from main
+    if: >
+      github.event_name == 'push' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.head.ref != 'main')
     runs-on: ubuntu-latest
 
     steps:
@@ -25,4 +27,4 @@ jobs:
 
       - name: Run Test Command
         run: |
-          echo "Hello Devops11"
+          echo "Hello Devops1"
