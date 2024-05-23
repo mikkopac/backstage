@@ -2,29 +2,27 @@ name: run test hello-devops
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - 'release/**'
+    paths-ignore:
+      - '.github/workflows/**'
   pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - 'release/**'
   workflow_dispatch:
-    #it's required to run manually on default branch
   workflow_call:
 
 jobs:
-
   build:
-
-    runs-on: ubuntu-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    if: "!contains(github.event.commits[0].message, 'Merge branch main into')"  # Prevent running if the push is from main
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Run Test Command
-      run: |
-        echo "Hello Devops1"
-
-
+      - name: Run Test Command
+        run: |
+          echo "Hello Devops1"
